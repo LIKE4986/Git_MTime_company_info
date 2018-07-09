@@ -7,12 +7,11 @@ import re
 import requests
 from pymongo import MongoClient
 
-conn = MongoClient('mongodb://localhost:27017/')
-db = conn.myfilmdb # 连接数据库名
-# conn = MongoClient('192.168.0.113', 27017)
-# db = conn.myfilmdb
-my_set = db.company_set
-
+conn = MongoClient('192.168.235.55', 27017) #连接mongodb
+db = conn['admin']  #连接数据库名
+db.authenticate("admin", "123456")    #密码
+db = conn['team_behind_sc'] #use team_behind_sc(数据库)
+my_set = db['Film_company'] #连接要导入的表
 
 def __film_data():
     # 获取每个电影专门的编号，并进入网站
